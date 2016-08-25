@@ -172,4 +172,5 @@
             <version>1.7.21</version>
         </dependency>
     </dependencies>
+    <name>Event Planner Core</name>
 </project>
