@@ -19,6 +19,7 @@ import com.jcabi.aspects.LogExceptions;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import org.rockyroadshub.planner.core.utils.Initializable;
 
 /**
  *
@@ -26,14 +27,12 @@ import java.sql.SQLException;
  * @version 0.0.0
  * @since 1.8
  */
-public class DatabaseConnection {
+public final class DatabaseConnection implements Initializable {
     private static final String PROTOCOL = "jdbc:derby:bin/mem;create=true";
     
     private Connection connection;
 
-    private DatabaseConnection() {
-        init();
-    }
+    private DatabaseConnection() {}
     
     private static final class Holder {
         private static final DatabaseConnection INSTANCE = new DatabaseConnection();
@@ -47,7 +46,8 @@ public class DatabaseConnection {
         return connection;
     }
     
-    public void init() {
+    @Override
+    public void initialize() {
         try {
             setupDriver();
             setupConnection();

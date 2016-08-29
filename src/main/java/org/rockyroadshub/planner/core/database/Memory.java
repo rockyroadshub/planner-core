@@ -40,6 +40,7 @@ public final class Memory {
         this.tableNamePattern = tableNamePattern;
         
         if(schemaPattern.equals("null")) {
+            this.schemaPattern = null;
             identifier = tableNamePattern;
         }
         else {

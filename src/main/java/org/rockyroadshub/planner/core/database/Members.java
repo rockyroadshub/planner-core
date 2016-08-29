@@ -81,7 +81,7 @@ public final class Members {
     }
   
     /**
-     * Sets the columns to be displayed in the display panel. First <br>
+     * Sets the columns to be displayed in the display panel. First
      * column is 0, the second is 1.. and so on.
      * @param displayColumns columns to be displayed (as index)
      * @return 
@@ -99,22 +99,22 @@ public final class Members {
         StringBuilder insertColumn  = new StringBuilder("INSERT INTO @ (");
         StringBuilder insertValue   = new StringBuilder("VALUES (");
         StringBuilder updateFormat0 = new StringBuilder("UPDATE @ SET ");
-        String deleteFormat0 = "DELETE FROM @ WHERE mainKey = %d";
-        String selectFormat0 = "SELECT * FROM @ WHERE mainKey = %d";
+        String deleteFormat0 = "DELETE FROM @ WHERE mainKey = ?";
+        String selectFormat0 = "SELECT * FROM @ WHERE mainKey = ?";
         
         activeColumns.stream().map((column) -> {
             insertColumn.append(column).append(",");
             return column;
         }).forEach((column) -> {
-            insertValue.append("'%s',");
+            insertValue.append("?,");
             updateFormat0.append(column)
-                         .append(" = '%s',");
+                         .append(" = ?,");
         });
         
         insertColumn.replace(insertColumn.length()-1, insertColumn.length(), ") ");
         insertValue.replace(insertValue.length()-1, insertValue.length(), ")"); 
         updateFormat0.replace(updateFormat0.length()-1, updateFormat0.length(), " ")
-                     .append("WHERE ").append(mainKey).append(" = %d"); 
+                     .append("WHERE ").append(mainKey).append(" = ?"); 
         
         
         insertFormat = insertColumn.toString() + insertValue.toString();

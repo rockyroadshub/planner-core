@@ -14,9 +14,7 @@
  * limitations under the License.
  */
 
-package org.rockyroadshub.planner.core.database;
-
-import java.io.Serializable;
+package org.rockyroadshub.planner.core.utils;
 
 /**
  *
@@ -24,29 +22,7 @@ import java.io.Serializable;
  * @version 0.0.0
  * @since 1.8
  */
-public abstract class Data implements Serializable {
+public interface Initializable {
 
-    private static final long serialVersionUID = -8371995109117377512L;
-    
-    
-    /**
-     * ID variable
-     */
-    protected int id;
-    
-    /**
-     * 
-     * @return primary/main key of a data
-     */
-    public int getID() {
-        return id;
-    }
-    
-    /**
-     * Sets the primary/main key of the data
-     * @param id ID parameter
-     */
-    public void setID(int id) {
-        this.id = id;
-    }
+    void initialize();
 }
