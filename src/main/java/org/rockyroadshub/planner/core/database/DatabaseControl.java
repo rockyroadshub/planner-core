@@ -19,7 +19,6 @@ package org.rockyroadshub.planner.core.database;
 import com.jcabi.aspects.LogExceptions;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -27,8 +26,7 @@ import java.sql.Statement;
 /**
  *
  * @author Arnell Christoper D. Dalid
- * @version 0.0.0
- * @since 1.8
+ * @since 0.1.0
  */
 public final class DatabaseControl {    
     private DatabaseControl() {}

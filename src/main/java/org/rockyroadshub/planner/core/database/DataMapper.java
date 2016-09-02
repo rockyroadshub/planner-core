@@ -22,20 +22,19 @@ import java.util.Map;
 /**
  *
  * @author Arnell Christoper D. Dalid
- * @version 0.0.0
- * @since 1.8
+ * @since 0.1.2
  */
 public abstract class DataMapper implements Mapper {
     /**
      * Memory used by the mapper
      */
-    private Memory memory;
+    private final Memory memory;
     
     /**
-     * Sets the memory to be accessed by the mapper
-     * @param memory memory to be accessed
+     * DataMapper constructor
+     * @param memory memory used by the mapper
      */
-    public final void setMemory(Memory memory) {
+    public DataMapper(Memory memory) {
         this.memory = memory;
     }
     

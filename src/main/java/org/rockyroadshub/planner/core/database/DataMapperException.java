@@ -19,9 +19,9 @@ package org.rockyroadshub.planner.core.database;
 /**
  *
  * @author Arnell Christoper D. Dalid
- * @version 0.0.0
- * @since 1.8
+ * @since 0.1.0
  */
+@SuppressWarnings("serial")
 public class DataMapperException extends RuntimeException {
     public DataMapperException(final Throwable cause) {
         super(cause);
