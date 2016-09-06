@@ -15,60 +15,26 @@
  */
 package org.rockyroadshub.planner.core.database;
 
-import com.jcabi.aspects.LogExceptions;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
-import org.rockyroadshub.planner.core.utils.Initializable;
 
 /**
  *
  * @author Arnell Christoper D. Dalid
- * @since 0.1.0
+ * @since 0.2.0
  */
-public final class DatabaseConnection implements Initializable {
-    private static final String PROTOCOL = "jdbc:derby:bin/mem;create=true";
-    
-    private Connection connection;
+public final class DatabaseConnection {    
+    private static Connection connection;
 
     private DatabaseConnection() {}
-    
-    private static final class Holder {
-        private static final DatabaseConnection INSTANCE = new DatabaseConnection();
-    }
-
-    public static DatabaseConnection getInstance() {  
-        return Holder.INSTANCE;
-    }  
            
-    public Connection getConnection() {
-        return connection;
+    public static void setConnection(Connection connection) {
+        if(DatabaseConnection.connection != null) 
+            throw new IllegalStateException("Database is already connected.");
+        
+        DatabaseConnection.connection = connection;
     }
     
-    @Override
-    public void initialize() {
-        try {
-            setupDriver();
-            setupConnection();
-        } catch (ClassNotFoundException |
-                 InstantiationException | 
-                 IllegalAccessException |
-                 SQLException ex) 
-        {
-            throw new RuntimeException(ex);
-        }
+    public static synchronized Connection getConnection() {
+        return DatabaseConnection.connection;
     }
-    
-    @LogExceptions
-    private void setupDriver() throws 
-            ClassNotFoundException, InstantiationException, 
-            IllegalAccessException 
-    {
-        Class.forName("org.apache.derby.jdbc.EmbeddedDriver").newInstance();
-    }
-    
-    @LogExceptions
-    private void setupConnection() throws SQLException {
-        connection = DriverManager.getConnection(PROTOCOL);
-    }   
 }

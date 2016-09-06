@@ -26,7 +26,7 @@ import java.sql.Statement;
 /**
  *
  * @author Arnell Christoper D. Dalid
- * @since 0.1.0
+ * @since 0.2.0
  */
 public final class DatabaseControl {    
     private DatabaseControl() {}
@@ -49,11 +49,10 @@ public final class DatabaseControl {
     public boolean create(Memory memory) throws SQLException {
         String schemaPattern = memory.getSchemaPattern();
         String tableNamePattern = memory.getTableNamePattern();
-        DatabaseConnection connection = DatabaseConnection.getInstance();
-        Connection connection0 = connection.getConnection();
+        Connection connection = DatabaseConnection.getConnection();
         
-        if(!exists(connection0, schemaPattern, tableNamePattern)) {
-            try(Statement command = connection0.createStatement()) {
+        if(!exists(connection, schemaPattern, tableNamePattern)) {
+            try(Statement command = connection.createStatement()) {
                 command.executeUpdate(memory.getMembers().getCreateFormat());
                 return true;
             }
