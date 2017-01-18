@@ -16,6 +16,11 @@
 
 package org.rockyroadshub.planner.core.database;
 
+import com.jcabi.aspects.LogExceptions;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
 
@@ -137,5 +142,23 @@ public abstract class DataMapper implements Mapper {
      */
     public Map<String, String> getColumnAltTexts() {
         return getMembers().getColumnAltTexts();
+    }
+    
+    @LogExceptions
+    @Override
+    public int getRowCount() throws SQLException {
+        int count = 0;
+        Connection conn = DatabaseConnection.getConnection();
+        
+        try(PreparedStatement stmt = 
+            conn.prepareStatement(getMembers().getRCountFormat()))
+        {
+            try(ResultSet rs = stmt.executeQuery()) {
+                while(rs.next()) {
+                    count++;
+                }
+            }
+        }
+        return count;
     }
 }
