@@ -27,7 +27,7 @@ import java.util.Map;
 /**
  *
  * @author Arnell Christoper D. Dalid
- * @since 0.2.0
+ * @since 0.2.3
  */
 public abstract class DataMapper implements Mapper {
     /**
