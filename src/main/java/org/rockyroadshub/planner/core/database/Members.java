@@ -30,7 +30,7 @@ import java.util.Map;
 public final class Members {
     
     private final StringBuilder createFormat0 = new StringBuilder("CREATE TABLE @ (");
-    private static final String ROW_COUNT = "SELECT COUNT(*) FROM @";
+    private static final String ROW_COUNT = "SELECT COUNT(*) AS rowcount FROM @";
     
     private final List<String> columns = new ArrayList<>();
     private final List<String> activeColumns = new ArrayList<>();

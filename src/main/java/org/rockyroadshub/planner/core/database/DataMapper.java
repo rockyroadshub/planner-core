@@ -154,8 +154,8 @@ public abstract class DataMapper implements Mapper {
             conn.prepareStatement(getMembers().getRCountFormat()))
         {
             try(ResultSet rs = stmt.executeQuery()) {
-                while(rs.next()) {
-                    count++;
+                if(rs.next()) {
+                    return rs.getInt("rowcount");
                 }
             }
         }
