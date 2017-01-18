@@ -21,7 +21,7 @@ import java.util.Optional;
 /**
  *
  * @author Arnell Christoper D. Dalid
- * @since 0.2.1
+ * @since 0.2.3
  */
 public interface Mapper {
     /**
@@ -53,4 +53,11 @@ public interface Mapper {
      * @throws Exception 
      */
     void delete(int id) throws Exception;
+    
+    /**
+     * Gets the total number of rows in the memory
+     * @return total number of rows
+     * @throws Exception
+     */
+    int getRowCount() throws Exception;
 }

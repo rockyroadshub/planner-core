@@ -25,11 +25,12 @@ import java.util.Map;
 /**
  *
  * @author Arnell Christoper D. Dalid
- * @since 0.1.0
+ * @since 0.2.3
  */
 public final class Members {
     
     private final StringBuilder createFormat0 = new StringBuilder("CREATE TABLE @ (");
+    private static final String ROW_COUNT = "SELECT COUNT(*) FROM @";
     
     private final List<String> columns = new ArrayList<>();
     private final List<String> activeColumns = new ArrayList<>();
@@ -41,6 +42,7 @@ public final class Members {
     private String updateFormat;
     private String deleteFormat;
     private String selectFormat;
+    private String rcountFormat;
     private String mainKey;
     
 //    private String findFormat0 = "SELECT * FROM @ WHERE ";;
@@ -120,6 +122,7 @@ public final class Members {
         updateFormat = updateFormat0.toString();
         deleteFormat = deleteFormat0.replaceAll("mainKey", mainKey);
         selectFormat = selectFormat0.replaceAll("mainKey", mainKey);
+        rcountFormat = ROW_COUNT;
         
         return this;
     }
@@ -162,8 +165,15 @@ public final class Members {
     
     public void setSelectFormat(String selectFormat) {
         this.selectFormat = selectFormat;
+    }  
+    
+    public String getRCountFormat() {
+        return rcountFormat;
     }
     
+    public void setRCountFormat(String rcountFormat) {
+        this.rcountFormat = rcountFormat;
+    }
     
     /**
      * 

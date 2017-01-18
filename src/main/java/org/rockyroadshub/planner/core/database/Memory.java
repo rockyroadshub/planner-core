@@ -19,7 +19,7 @@ package org.rockyroadshub.planner.core.database;
 /**
  *
  * @author Arnell Christoper D. Dalid
- * @since 0.1.0
+ * @since 0.2.3
  */
 public final class Memory {
 
@@ -55,18 +55,21 @@ public final class Memory {
         String update = members.getUpdateFormat();
         String delete = members.getDeleteFormat();
         String select = members.getSelectFormat();
+        String rcount = members.getRCountFormat();
         
         create = create.replaceAll("@", identifier);
         insert = insert.replaceAll("@", identifier);
         update = update.replaceAll("@", identifier);
         delete = delete.replaceAll("@", identifier);
         select = select.replaceAll("@", identifier);
+        rcount = rcount.replaceAll("@", identifier);
         
         members.setCreateFormat(create);
         members.setInsertFormat(insert);
         members.setUpdateFormat(update);
         members.setDeleteFormat(delete);
         members.setSelectFormat(select);
+        members.setRCountFormat(rcount);
     }
     
     public Members getMembers() {
